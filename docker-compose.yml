@@ -1,0 +1,14 @@
+services:
+  homebridge-exporter:
+    image: hypercat-net/homebridge-exporter:latest
+    container_name: homebridge-exporter
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - exporter-config:/config
+    ports:
+      - "9090:9090" # metrics / health: http://localhost:9090/metrics
+
+volumes:
+  exporter-config:
+    name: homebridge-exporter-config

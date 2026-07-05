@@ -1,0 +1,9 @@
+accessories:
+  - unique_id: "REPLACE_WITH_FRIDGE_UNIQUE_ID"
+    label: fridge
+    characteristics:
+      - CurrentTemperature
+  - unique_id: "REPLACE_WITH_FREEZER_UNIQUE_ID"
+    label: freezer
+    characteristics:
+      - CurrentTemperature
