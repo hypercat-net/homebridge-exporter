@@ -53,10 +53,10 @@ func TestLoadFromEnv(t *testing.T) {
 
 	t.Setenv("HOMEBRIDGE_URL", "http://127.0.0.1:8581")
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
-	t.Setenv("EXPORTER_LISTEN_ADDR", ":9191")
-	t.Setenv("EXPORTER_POLL_INTERVAL", "15s")
-	t.Setenv("EXPORTER_REQUEST_TIMEOUT", "5s")
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_LISTEN_ADDR", ":9191")
+	t.Setenv("HOMEBRIDGE_EXPORTER_POLL_INTERVAL", "15s")
+	t.Setenv("HOMEBRIDGE_EXPORTER_REQUEST_TIMEOUT", "5s")
 
 	cfg, err := Load()
 	if err != nil {
@@ -98,7 +98,7 @@ func TestValidateRequiresCredentials(t *testing.T) {
 	t.Setenv("HOMEBRIDGE_NOAUTH", "false")
 	t.Setenv("HOMEBRIDGE_USERNAME", "")
 	t.Setenv("HOMEBRIDGE_PASSWORD", "")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
 
 	if _, err := Load(); err == nil {
 		t.Fatal("expected error when credentials missing")
@@ -118,7 +118,7 @@ func TestValidateRequiresUniqueID(t *testing.T) {
 	}
 
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
 
 	if _, err := Load(); err == nil {
 		t.Fatal("expected error when unique_id missing")
@@ -128,7 +128,7 @@ func TestValidateRequiresUniqueID(t *testing.T) {
 func TestLoadConnection(t *testing.T) {
 	t.Setenv("HOMEBRIDGE_URL", "http://example:8581")
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_POLL_INTERVAL", "45s")
+	t.Setenv("HOMEBRIDGE_EXPORTER_POLL_INTERVAL", "45s")
 
 	conn, err := LoadConnection()
 	if err != nil {
@@ -144,11 +144,11 @@ func TestLoadConnection(t *testing.T) {
 
 func TestLoadConnectionInvalidPollInterval(t *testing.T) {
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_POLL_INTERVAL", "not-a-duration")
+	t.Setenv("HOMEBRIDGE_EXPORTER_POLL_INTERVAL", "not-a-duration")
 
 	_, err := LoadConnection()
 	if err == nil {
-		t.Fatal("expected error for invalid EXPORTER_POLL_INTERVAL")
+		t.Fatal("expected error for invalid HOMEBRIDGE_EXPORTER_POLL_INTERVAL")
 	}
 }
 
@@ -168,7 +168,7 @@ func TestValidateDuplicateUniqueID(t *testing.T) {
 	}
 
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
 
 	_, err := Load()
 	if err == nil {
@@ -188,7 +188,7 @@ func TestValidateRequiresCharacteristics(t *testing.T) {
 	}
 
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
 
 	_, err := Load()
 	if err == nil {
@@ -201,7 +201,7 @@ func TestLoadUnreadableConfigFile(t *testing.T) {
 	path := filepath.Join(dir, "missing.yaml")
 
 	t.Setenv("HOMEBRIDGE_NOAUTH", "true")
-	t.Setenv("EXPORTER_CONFIG_PATH", path)
+	t.Setenv("HOMEBRIDGE_EXPORTER_CONFIG_PATH", path)
 
 	_, err := Load()
 	if err == nil {

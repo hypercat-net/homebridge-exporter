@@ -103,12 +103,12 @@ func LoadAccessoriesFile(path string) (AccessoriesFile, error) {
 }
 
 func loadConnectionFromEnv() (Connection, error) {
-	pollInterval, err := parseDurationEnv("EXPORTER_POLL_INTERVAL", 30*time.Second)
+	pollInterval, err := parseDurationEnv("HOMEBRIDGE_EXPORTER_POLL_INTERVAL", 30*time.Second)
 	if err != nil {
 		return Connection{}, err
 	}
 
-	requestTimeout, err := parseDurationEnv("EXPORTER_REQUEST_TIMEOUT", 10*time.Second)
+	requestTimeout, err := parseDurationEnv("HOMEBRIDGE_EXPORTER_REQUEST_TIMEOUT", 10*time.Second)
 	if err != nil {
 		return Connection{}, err
 	}
@@ -124,8 +124,8 @@ func loadConnectionFromEnv() (Connection, error) {
 		HomebridgePass:   os.Getenv("HOMEBRIDGE_PASSWORD"),
 		HomebridgeOTP:    os.Getenv("HOMEBRIDGE_OTP"),
 		HomebridgeNoAuth: noAuth,
-		ListenAddr:       envOrDefault("EXPORTER_LISTEN_ADDR", ":9090"),
-		ConfigPath:       envOrDefault("EXPORTER_CONFIG_PATH", "/config/accessories.yaml"),
+		ListenAddr:       envOrDefault("HOMEBRIDGE_EXPORTER_LISTEN_ADDR", ":9090"),
+		ConfigPath:       envOrDefault("HOMEBRIDGE_EXPORTER_CONFIG_PATH", "/config/accessories.yaml"),
 		PollInterval:     pollInterval,
 		RequestTimeout:   requestTimeout,
 	}

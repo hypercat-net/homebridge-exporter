@@ -93,10 +93,10 @@ docker compose up -d
 | `HOMEBRIDGE_PASSWORD` | Login password | — |
 | `HOMEBRIDGE_OTP` | Optional 2FA code | empty |
 | `HOMEBRIDGE_NOAUTH` | Use `/api/auth/noauth` instead of login | `false` |
-| `EXPORTER_LISTEN_ADDR` | HTTP bind address | `:9090` |
-| `EXPORTER_CONFIG_PATH` | Path to accessories YAML | `/config/accessories.yaml` |
-| `EXPORTER_POLL_INTERVAL` | Upstream poll interval | `30s` |
-| `EXPORTER_REQUEST_TIMEOUT` | Per-request timeout | `10s` |
+| `HOMEBRIDGE_EXPORTER_LISTEN_ADDR` | HTTP bind address | `:9090` |
+| `HOMEBRIDGE_EXPORTER_CONFIG_PATH` | Path to accessories YAML | `/config/accessories.yaml` |
+| `HOMEBRIDGE_EXPORTER_POLL_INTERVAL` | Upstream poll interval | `30s` |
+| `HOMEBRIDGE_EXPORTER_REQUEST_TIMEOUT` | Per-request timeout | `10s` |
 
 ### Accessory config (YAML)
 
