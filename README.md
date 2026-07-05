@@ -1,6 +1,6 @@
 # homebridge-exporter
 
-[![CI](https://github.com/hypercat-net/homebridge-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/hypercat-net/homebridge-exporter/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/hypercat-net/homebridge-exporter)](https://github.com/hypercat-net/homebridge-exporter/blob/main/LICENSE) [![Docker](https://img.shields.io/docker/v/hypercat-net/homebridge-exporter?label=docker)](https://hub.docker.com/r/hypercat-net/homebridge-exporter)
+[![CI](https://github.com/hypercat-net/homebridge-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/hypercat-net/homebridge-exporter/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/hypercat-net/homebridge-exporter)](https://github.com/hypercat-net/homebridge-exporter/blob/main/LICENSE) [![Docker](https://img.shields.io/docker/v/hypercat42/homebridge-exporter?label=docker)](https://hub.docker.com/r/hypercat42/homebridge-exporter)
 
 Standalone Prometheus exporter for [Homebridge](https://homebridge.io/) that polls the Config UI X REST API and exposes accessory characteristics as metrics.
 
@@ -180,7 +180,7 @@ docker build -t homebridge-exporter .
 
 GitHub Actions runs `go test ./...` on every push and pull request. Pushes to
 `main` (and version tags `v*`) also build and publish
-[`hypercat-net/homebridge-exporter`](https://hub.docker.com/r/hypercat-net/homebridge-exporter)
+[`hypercat42/homebridge-exporter`](https://hub.docker.com/r/hypercat42/homebridge-exporter)
 to Docker Hub. A **weekly scheduled rebuild** (Sundays 04:17 UTC) refreshes
 `latest` against the current `golang:1.23-alpine` base even when application
 code has not changed — useful for picking up base-image CVE fixes.
@@ -189,7 +189,7 @@ Configure these [repository secrets](https://github.com/hypercat-net/homebridge-
 
 | Secret | Description |
 | --- | --- |
-| `DOCKERHUB_USERNAME` | Docker Hub username (`hypercat-net`) |
+| `DOCKERHUB_USERNAME` | Docker Hub username (`hypercat42`) |
 | `DOCKERHUB_TOKEN` | Docker Hub [access token](https://hub.docker.com/settings/security) |
 
 Tags: `latest` and `sha-<commit>` on every `main` push and weekly rebuild;
@@ -214,7 +214,7 @@ docker run --rm \
 docker run -d --env-file .env \
   -v homebridge-exporter-config:/config \
   -p 9090:9090 \
-  hypercat-net/homebridge-exporter:latest
+  hypercat42/homebridge-exporter:latest
 ```
 
 ## License

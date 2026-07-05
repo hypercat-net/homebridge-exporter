@@ -1,6 +1,6 @@
 services:
   homebridge-exporter:
-    image: hypercat-net/homebridge-exporter:latest
+    image: hypercat42/homebridge-exporter:latest
     container_name: homebridge-exporter
     restart: unless-stopped
     env_file: .env
