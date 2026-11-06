@@ -8,7 +8,7 @@ on:
     branches: [main]
   workflow_dispatch:
   schedule:
-    # Rebuild weekly to pick up patched golang:1.23-alpine base layers (CVEs).
+    # Rebuild weekly to pick up patched golang:1.25-alpine base layers (CVEs).
     - cron: "17 4 * * 0"
 
 concurrency:
